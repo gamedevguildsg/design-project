@@ -13,8 +13,11 @@ func load_scene(s, args = null, transition = true) -> void:
 		await SignalBus.transition_covered
 		
 	self.remove_loaded_scenes()
-
+	
+	if s is String:
+		s = Scenes.get_scene(s)
 	%LevelContainer.add_child(s)
+	
 	if s.has_method("initialize"):
 		if args:
 			s.initialize(args)

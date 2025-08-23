@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://nolsqx7q8crr" path="res://scripts/main.gd" id="1_tjt80"]
 [ext_resource type="Script" uid="uid://bikxu0fjl3kh7" path="res://scripts/menus/scene_manager.gd" id="2_5b18o"]
 [ext_resource type="Script" uid="uid://dfd6kdyni8jj1" path="res://scripts/menus/transition.gd" id="3_lu6yq"]
-[ext_resource type="Shader" uid="uid://buenpvt46alx3" path="res://transition.gdshader" id="4_q4m8a"]
+[ext_resource type="Shader" uid="uid://buenpvt46alx3" path="res://shaders/transition.gdshader" id="4_q4m8a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jyhfs"]
 

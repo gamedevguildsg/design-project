@@ -1,10 +1,18 @@
 class_name PlayerOptions
 extends Node
 
-@export var max_walk_speed : float = 150
+@export var max_walk_speed : float = 100
 @export var can_run := true
-@export var run_speed_multiplier : float = 2.0
+@export var run_speed_multiplier : float = 1.5
 @export var can_steer_midair := true
+@export var can_dash := true
+@export var no_dashes := 1
+@export var dash_speed : float = 350
+@export var dash_duration := 0.08
+@export var can_air_dash := true
+@export var invuln_while_dashing := true
+@export var dash_cooldown := 0.5
+@export var dash_cooldown_applies_while_in_air := false
 @export var movement_acceleration : float = 400 # how fast the player accelerates when you press the input
 @export var air_acceleration : float = 200 # mid-air steering speed. Set to 0 for instant speed.
 @export var friction : float = 200 # how much the player slows down when input is let go. Set to 0 to disable.

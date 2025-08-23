@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://hflx4cc7hggd"]
+
+[ext_resource type="Script" uid="uid://dj2sec2llu8rf" path="res://scripts/moving_platform.gd" id="1_hwior"]
+[ext_resource type="Texture2D" uid="uid://dynt76rdmspyo" path="res://assets/Tiles/tile_0147.png" id="2_ouxtg"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbxjh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fwjrs"]
+size = Vector2(18, 6)
+
+[node name="MovingPlatform" type="Node2D"]
+script = ExtResource("1_hwior")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+unique_name_in_owner = true
+physics_material_override = SubResource("PhysicsMaterial_mbxjh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AnimatableBody2D"]
+unique_name_in_owner = true
+offset_right = 18.0
+offset_bottom = 18.0
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="TextureRect2" type="TextureRect" parent="AnimatableBody2D/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_ouxtg")
+stretch_mode = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+unique_name_in_owner = true
+position = Vector2(9, 3)
+shape = SubResource("RectangleShape2D_fwjrs")
+one_way_collision = true
