@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://62udm8g23pai"]
+
+[ext_resource type="Script" uid="uid://bkkesxj02piqu" path="res://scripts/start_screen.gd" id="1_he1sj"]
+[ext_resource type="Texture2D" uid="uid://chesbvrtcg34r" path="res://assets/Tilemap/tilemap-backgrounds_packed.png" id="2_r2jwc"]
+[ext_resource type="Texture2D" uid="uid://ddliy5mbxgi3f" path="res://icon.svg" id="3_hm208"]
+
+[sub_resource type="SystemFont" id="SystemFont_he1sj"]
+font_names = PackedStringArray("Noto Sans Armenian")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pab1"]
+resource_local_to_scene = true
+font = SubResource("SystemFont_he1sj")
+font_size = 76
+outline_size = 40
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o30b1"]
+resource_local_to_scene = true
+font = SubResource("SystemFont_he1sj")
+font_size = 34
+outline_size = 26
+outline_color = Color(0, 0, 0, 1)
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_he1sj")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(413.333, 325)
+scale = Vector2(9.02778, 9.02778)
+texture = ExtResource("2_r2jwc")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 455.0
+offset_top = 62.0
+offset_right = 1030.0
+offset_bottom = 167.0
+text = "Game Dev Guild"
+label_settings = SubResource("LabelSettings_5pab1")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 557.0
+offset_top = 167.0
+offset_right = 953.0
+offset_bottom = 272.0
+text = "2D Platformer Workshop"
+label_settings = SubResource("LabelSettings_o30b1")
+
+[node name="Start" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 604.0
+offset_top = 334.0
+offset_right = 912.0
+offset_bottom = 430.0
+text = "Start"
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(248, 268)
+texture = ExtResource("3_hm208")

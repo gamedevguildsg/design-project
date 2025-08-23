@@ -1,0 +1,26 @@
+extends Panel
+
+func _ready() -> void:
+	SignalBus.load_scene.connect(load_scene)
+	
+func remove_loaded_scenes() -> void:
+	for n : Node in %LevelContainer.get_children():
+		n.queue_free()
+		
+func load_scene(s, args = null, transition = true) -> void:
+	if transition:
+		SignalBus.play_transition.emit()
+		await SignalBus.transition_covered
+		
+	self.remove_loaded_scenes()
+
+	%LevelContainer.add_child(s)
+	if s.has_method("initialize"):
+		if args:
+			s.initialize(args)
+		else:
+			s.initialize()
+			
+	if transition:
+		await self.get_tree().process_frame
+		SignalBus.play_transition_out.emit()

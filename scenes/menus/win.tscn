@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://djk1oqej1gmre"]
+
+[ext_resource type="Script" uid="uid://cijgnm05cr75u" path="res://scripts/menus/win.gd" id="1_826fv"]
+[ext_resource type="Texture2D" uid="uid://chesbvrtcg34r" path="res://assets/Tilemap/tilemap-backgrounds_packed.png" id="2_iiocm"]
+
+[sub_resource type="SystemFont" id="SystemFont_choun"]
+font_names = PackedStringArray("Noto Sans Armenian")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_yxbqr"]
+resource_local_to_scene = true
+font = SubResource("SystemFont_choun")
+font_size = 76
+outline_size = 40
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_826fv")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(487, 326)
+scale = Vector2(9.02778, 9.02778)
+texture = ExtResource("2_iiocm")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 436.0
+offset_top = 245.0
+offset_right = 1011.0
+offset_bottom = 350.0
+text = "You win!"
+label_settings = SubResource("LabelSettings_yxbqr")
+
+[node name="BackToStart" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 480.0
+offset_top = 350.0
+offset_right = 703.0
+offset_bottom = 408.0
+text = "Back to Start"
