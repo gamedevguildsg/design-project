@@ -9,3 +9,6 @@ signal load_scene
 signal set_checkpoint_position
 
 signal player_died
+signal diamond_collected
+
+signal show_ui

@@ -9,7 +9,7 @@ func _ready() -> void:
 func _on_body_enter(body: Node2D):
 	if body is Player:
 		var player : Player = body
-		player.is_frozen = true
+		player.remove_player_control = true
 		print("You win!")
 		if go_to_scene:
 			SignalBus.load_scene.emit(go_to_scene)

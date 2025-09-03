@@ -15,6 +15,7 @@ func _ready() -> void:
 		Audio.set_and_play_bgm(level_bgm)
 	SignalBus.set_checkpoint_position.connect(_on_set_checkpoint_position)
 	SignalBus.player_died.connect(_on_player_death)
+	SignalBus.show_ui.emit()
 	spawn_player(%InitialSpawnPoint.global_position)
 	
 func _on_set_checkpoint_position(position : Vector2):

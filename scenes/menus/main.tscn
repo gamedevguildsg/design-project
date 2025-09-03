@@ -1,11 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7iovle3j31a7"]
+[gd_scene load_steps=10 format=3 uid="uid://b7iovle3j31a7"]
 
 [ext_resource type="Script" uid="uid://nolsqx7q8crr" path="res://scripts/main.gd" id="1_tjt80"]
 [ext_resource type="Script" uid="uid://bikxu0fjl3kh7" path="res://scripts/menus/scene_manager.gd" id="2_5b18o"]
 [ext_resource type="Script" uid="uid://dfd6kdyni8jj1" path="res://scripts/menus/transition.gd" id="3_lu6yq"]
+[ext_resource type="Texture2D" uid="uid://bla56qgwx3mvm" path="res://assets/Tiles/tile_0067.png" id="3_q4m8a"]
+[ext_resource type="FontFile" uid="uid://bo0c3umhxf5my" path="res://PixelifySans-VariableFont_wght.ttf" id="4_edf0w"]
 [ext_resource type="Shader" uid="uid://buenpvt46alx3" path="res://shaders/transition.gdshader" id="4_q4m8a"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jyhfs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kbuax"]
+font = ExtResource("4_edf0w")
+font_size = 25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o6xl0"]
 shader = ExtResource("4_q4m8a")
@@ -41,6 +47,43 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -73.0
+offset_top = 5.0
+offset_right = -14.0
+offset_bottom = 45.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_q4m8a")
+expand_mode = 2
+
+[node name="DiamondsLabel" type="Label" parent="CanvasLayer/UI/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_kbuax")
 
 [node name="Transition" type="CanvasLayer" parent="."]
 script = ExtResource("3_lu6yq")

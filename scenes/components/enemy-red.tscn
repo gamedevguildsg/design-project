@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://cr7kbljoxipkb"]
+
+[ext_resource type="Script" uid="uid://dv8nwwbyxij3l" path="res://scripts/enemy.gd" id="1_gus35"]
+[ext_resource type="Texture2D" uid="uid://ckpq0rgyonone" path="res://assets/Tiles/Characters/tile_0015.png" id="2_djao6"]
+[ext_resource type="Texture2D" uid="uid://bo25ue7vgph3i" path="res://assets/Tiles/Characters/tile_0016.png" id="3_oj66p"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jauyj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_djao6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oj66p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_djao6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oj66p")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7rgl3"]
+size = Vector2(11, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d750v"]
+size = Vector2(15, 18)
+
+[node name="Enemy" type="CharacterBody2D"]
+position = Vector2(0, -3)
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_gus35")
+ai_mode = 0
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_jauyj")
+animation = &"walk"
+
+[node name="RayCast2D" type="RayCast2D" parent="Sprite2D"]
+unique_name_in_owner = true
+position = Vector2(-8.205, 0)
+target_position = Vector2(0.205, 19)
+
+[node name="Area2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="PlayerHitbox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_7rgl3")
+
+[node name="PhysicsHitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_d750v")

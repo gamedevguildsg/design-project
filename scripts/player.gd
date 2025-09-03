@@ -12,6 +12,11 @@ var dash_in_cooldown := false
 var is_dead := false
 var is_dashing := false
 var is_frozen := false
+var remove_player_control := false
+
+## collectable data
+var diamonds_collected := 0
+var coins_collected := 0
 
 ## For dash animation
 var duplicate_time_actual : float = 0
@@ -36,6 +41,8 @@ func jump():
 		return
 	jumps_left -= 1
 	velocity.y = -%PlayerOptions.jump_strength
+	%AudioManager.play_sound("jump")
+		
 func fall_through():
 	position.y += 1
 	
@@ -86,6 +93,11 @@ func _physics_process(delta: float) -> void:
 	var sprinting_factor = %PlayerOptions.run_speed_multiplier if is_sprinting else 1
 	var input_direction = Input.get_axis("left", "right")
 	var vertical_input_direction = Input.get_axis("up", "down")
+	if remove_player_control:
+		sprinting_factor = 1
+		input_direction = 0
+		vertical_input_direction = 0
+		
 	var max_speed = %PlayerOptions.max_walk_speed * sprinting_factor
 	var additional_friction = %PlayerOptions.friction * sign(-velocity.x) if %PlayerOptions.friction > 0 and \
 		  (not sign(velocity.x) == sign(input_direction)) else 0
@@ -172,6 +184,8 @@ func start_dash(input_direction, vertical_input_direction):
 	
 	velocity = Vector2(input_direction, vertical_input_direction).normalized() \
 	  * %PlayerOptions.dash_speed
+	
+	%AudioManager.play_sound("dash")
 	
 func handle_dash_state(delta):
 	dash_current_duration += delta

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://csyi3a388f2ow"]
+[gd_scene load_steps=7 format=3 uid="uid://csyi3a388f2ow"]
 
 [ext_resource type="Script" uid="uid://dihsf1wjpwp4v" path="res://scripts/checkpoint.gd" id="1_ywqth"]
+[ext_resource type="AudioStream" uid="uid://dr6kmue5xeel2" path="res://assets/sfx/Big Egg collect 1.wav" id="2_on7kf"]
 [ext_resource type="Texture2D" uid="uid://deeoiob6aeqs8" path="res://assets/Tilemap/tilemap_packed.png" id="2_vsimk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywqth"]
@@ -14,6 +15,7 @@ size = Vector2(18, 24)
 
 [node name="Checkpoint" type="Node2D"]
 script = ExtResource("1_ywqth")
+activate_sfx = ExtResource("2_on7kf")
 
 [node name="Panel" type="Panel" parent="."]
 clip_children = 1

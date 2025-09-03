@@ -1,7 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://c62g7xgg1ustx"]
+[gd_scene load_steps=30 format=3 uid="uid://c62g7xgg1ustx"]
 
 [ext_resource type="Script" uid="uid://dnrtqh5nvghah" path="res://scripts/player.gd" id="1_2l1sc"]
 [ext_resource type="Script" uid="uid://b4lpbyjh6wbx" path="res://scripts/player_options.gd" id="2_fgeo0"]
+[ext_resource type="AudioStream" uid="uid://y74bmht1bngx" path="res://assets/sfx/Bubble 1.wav" id="2_lkd77"]
+[ext_resource type="AudioStream" uid="uid://dombtlg784rx6" path="res://assets/sfx/Jump 1.wav" id="3_2b5yf"]
 [ext_resource type="Script" uid="uid://beqrvfythcief" path="res://scripts/audio_options.gd" id="3_lkd77"]
 [ext_resource type="AudioStream" uid="uid://btp2yx8q0d1ma" path="res://assets/8-bit-explosion-3-340456.mp3" id="4_2b5yf"]
 [ext_resource type="Shader" uid="uid://bl27rmhqussb3" path="res://shaders/dash.gdshader" id="5_o1rqo"]
@@ -225,11 +227,14 @@ stream = SubResource("AudioStreamPolyphonic_fjrip")
 volume_db = -6.932
 script = ExtResource("3_lkd77")
 sounds = Dictionary[String, AudioStream]({
-"death": ExtResource("4_2b5yf")
+"dash": ExtResource("3_2b5yf"),
+"death": ExtResource("4_2b5yf"),
+"jump": ExtResource("2_lkd77")
 })
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+texture_filter = 1
 material = SubResource("ShaderMaterial_ur7pv")
 sprite_frames = SubResource("SpriteFrames_smehm")
 animation = &"walk"
@@ -238,6 +243,7 @@ frame_progress = 1.0
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
+texture_filter = 1
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_4r5pv")
 animation = &"spike_death"
