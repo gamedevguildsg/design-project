@@ -16,7 +16,7 @@ extends Node
 @export var movement_acceleration : float = 400 # how fast the player accelerates when you press the input
 @export var air_acceleration : float = 200 # mid-air steering speed. Set to 0 for instant speed.
 @export var friction : float = 200 # how much the player slows down when input is let go. Set to 0 to disable.
-@export var health := 0 # 0 means no health mechanic
+@export var max_health := 0 # 0 means no health mechanic
 @export var no_jumps := 1
 @export var jump_strength : float = 200
 @export var fall_damage_enabled := false

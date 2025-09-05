@@ -29,14 +29,13 @@ func _physics_process(delta: float) -> void:
 	if LevelData.gravity > 0:
 		velocity.y += LevelData.gravity * delta
 	
+	for n in %Area2D.get_overlapping_bodies():
+		if n is Player:
+			n.hit()
 	move_and_slide()
 
 
 func _on_body_entered(body : Node2D):
-	if body is Player:
-		if damage_player_on_contact:
-			var player : Player = body
-			player.kill()
 	if body is Enemy:
 		var enemy : Enemy = body
 		enemy.turn()

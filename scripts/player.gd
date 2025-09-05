@@ -13,6 +13,9 @@ var is_dead := false
 var is_dashing := false
 var is_frozen := false
 var remove_player_control := false
+var max_health
+var current_health
+var is_invulnerable := false
 
 ## collectable data
 var diamonds_collected := 0
@@ -24,6 +27,11 @@ var duplicate_time_gap := 0.03
 var duplicate_lifetime := 0.3
 var dash_current_duration : float = 0
 
+## health texture
+var full_heart_texture = load("res://assets/tiles/tile_0044.png")
+var half_heart_texture = load("res://assets/tiles/tile_0045.png")
+var empty_heart_texture = load("res://assets/tiles/tile_0046.png")
+
 func _ready() -> void:
 	jumps_left = %PlayerOptions.no_jumps
 	dashes_left = %PlayerOptions.no_dashes
@@ -31,6 +39,11 @@ func _ready() -> void:
 	%Hurtbox.body_entered.connect(_on_enter_hurtbox)
 	%Animations.animation = "none"
 	%Animations.animation_finished.connect(_on_animation_finished)
+	
+	if %PlayerOptions.max_health > 0:
+		max_health = %PlayerOptions.max_health
+		current_health = max_health
+		update_health_display()
 	
 func _on_enter_hurtbox(body: Node2D):
 	pass
@@ -46,9 +59,31 @@ func jump():
 func fall_through():
 	position.y += 1
 	
+func hit(damage = 1):
+	if is_invulnerable:
+		return
+	if %PlayerOptions.invuln_while_dashing and is_dashing:
+		return
+	if not current_health:
+		kill()
+		return
+		
+	current_health -= damage
+	if current_health <= 0:
+		kill()
+		return
+	%AudioManager.play_sound("hit")
+	
+	update_health_display()
+	blinking_animation()
+	
 func kill(reason : String = "fall_below"):
+	is_invulnerable = true
 	is_dead = true
 	%Sprite.visible = false
+	current_health = 0
+	update_health_display()
+	
 	match reason:
 		"fall_below":
 			%Animations.play("death_from_below")
@@ -59,11 +94,25 @@ func kill(reason : String = "fall_below"):
 	SignalBus.player_died.emit()
 	
 func blinking_animation():
+	is_invulnerable = true
 	for _i in 5:
-		%Sprite.visible = false
-		await get_tree().create_timer(0.15)
-		%Sprite.visible = true
-		await get_tree().create_timer(0.15)
+		%Sprite.modulate.a = 0
+		await get_tree().create_timer(0.08).timeout
+		%Sprite.modulate.a = 1
+		await get_tree().create_timer(0.08).timeout
+	is_invulnerable = false
+
+func update_health_display():
+	%HeartContainer.get_children().map(func(n : Node): %HeartContainer.remove_child(n))
+	for _i in floor(current_health):
+		var heart = TextureRect.new()
+		heart.texture = full_heart_texture
+		%HeartContainer.add_child(heart)
+	for _i in floor(max_health - current_health):
+		var empty_heart = TextureRect.new()
+		empty_heart.texture = empty_heart_texture
+		%HeartContainer.add_child(empty_heart)
+	
 
 func _on_animation_finished():
 	%Animations.animation = "none"
@@ -186,13 +235,20 @@ func start_dash(input_direction, vertical_input_direction):
 	  * %PlayerOptions.dash_speed
 	
 	%AudioManager.play_sound("dash")
-	
+
+func spawn_reset():
+	is_dead = false
+	is_frozen = false
+	blinking_animation()
+	get_node("%Sprite").visible = true
+	current_health = max_health
+	update_health_display()
+
 func handle_dash_state(delta):
 	dash_current_duration += delta
 	if dash_current_duration > %PlayerOptions.dash_duration:
 		is_dashing = false
 		dash_current_duration = 0
-
 		
 	duplicate_time_actual += delta
 	if duplicate_time_actual >= duplicate_time_gap:

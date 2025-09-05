@@ -22,7 +22,7 @@ func _on_set_checkpoint_position(position : Vector2):
 	checkpoint_position = position + Vector2(0, -5)
 	
 func _on_player_death():
-	var position = checkpoint_position if checkpoint_position else %InitialSpawnPoint.global_positiond
+	var position = checkpoint_position if checkpoint_position else %InitialSpawnPoint.global_position
 	spawn_player(position)
 	
 func spawn_player(position):
@@ -32,13 +32,11 @@ func spawn_player(position):
 		self.player = player_scene
 
 	player.global_position = position
-	player.is_dead = false
-	player.is_frozen = false
-	player.blinking_animation()
 	player.set_camera_boundaries(
 		%Area2D.position.x,
 		%Area2D.position.x + %LevelBoundary.shape.size.x,
 		%Area2D.position.y,
 		%Area2D.position.y + %LevelBoundary.shape.size.y
 	)
-	player.get_node("%Sprite").visible = true
+	player.spawn_reset()
+	
