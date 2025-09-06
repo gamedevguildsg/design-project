@@ -30,6 +30,7 @@ func spawn_player(position):
 		var player_scene : Player = Scenes.get_scene("player")
 		self.add_child(player_scene)
 		self.player = player_scene
+		player.set_player_options(%PlayerOptions)
 
 	player.global_position = position
 	player.set_camera_boundaries(

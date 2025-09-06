@@ -1,5 +1,6 @@
 extends Panel
 
+var currentScene
 func _ready() -> void:
 	SignalBus.load_scene.connect(load_scene)
 	
@@ -27,3 +28,8 @@ func load_scene(s, args = null, transition = true) -> void:
 	if transition:
 		await self.get_tree().process_frame
 		SignalBus.play_transition_out.emit()
+	
+	currentScene = s
+
+func reload_current_scene(args = null):
+	load_scene(currentScene, args)

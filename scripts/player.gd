@@ -17,6 +17,8 @@ var max_health
 var current_health
 var is_invulnerable := false
 
+var player_options : PlayerOptions
+
 ## collectable data
 var diamonds_collected := 0
 var coins_collected := 0
@@ -33,18 +35,20 @@ var half_heart_texture = load("res://assets/tiles/tile_0045.png")
 var empty_heart_texture = load("res://assets/tiles/tile_0046.png")
 
 func _ready() -> void:
-	jumps_left = %PlayerOptions.no_jumps
-	dashes_left = %PlayerOptions.no_dashes
-	max_jump_speed = %PlayerOptions.max_walk_speed
 	%Hurtbox.body_entered.connect(_on_enter_hurtbox)
 	%Animations.animation = "none"
 	%Animations.animation_finished.connect(_on_animation_finished)
 	
-	if %PlayerOptions.max_health > 0:
-		max_health = %PlayerOptions.max_health
+func set_player_options(options):
+	player_options = options
+	jumps_left = player_options.no_jumps
+	dashes_left = player_options.no_dashes
+	max_jump_speed = player_options.max_walk_speed
+	if player_options.max_health > 0:
+		max_health = player_options.max_health
 		current_health = max_health
 		update_health_display()
-	
+		
 func _on_enter_hurtbox(body: Node2D):
 	pass
 
@@ -53,7 +57,7 @@ func jump():
 	if jumps_left <= 0:
 		return
 	jumps_left -= 1
-	velocity.y = -%PlayerOptions.jump_strength
+	velocity.y = -player_options.jump_strength
 	%AudioManager.play_sound("jump")
 		
 func fall_through():
@@ -62,7 +66,7 @@ func fall_through():
 func hit(damage = 1):
 	if is_invulnerable:
 		return
-	if %PlayerOptions.invuln_while_dashing and is_dashing:
+	if player_options.invuln_while_dashing and is_dashing:
 		return
 	if not current_health:
 		kill()
@@ -117,6 +121,7 @@ func update_health_display():
 func _on_animation_finished():
 	%Animations.animation = "none"
 
+var previous_frame_vertical_speed : float = 0
 var dash_cooldown : float = 0
 func _physics_process(delta: float) -> void:
 	if is_dead or is_frozen:
@@ -126,20 +131,19 @@ func _physics_process(delta: float) -> void:
 		return # return as we don't want it to be affected by terminal velocity
 	if dash_in_cooldown:
 		dash_cooldown += delta
-		if dash_cooldown > %PlayerOptions.dash_cooldown:
+		if dash_cooldown > player_options.dash_cooldown:
 			dash_cooldown = 0
 			dash_in_cooldown = false
 	
 	if is_on_floor():
-		jumps_left = %PlayerOptions.no_jumps
-		dashes_left = %PlayerOptions.no_dashes
+		jumps_left = player_options.no_jumps
+		dashes_left = player_options.no_dashes
 	else:
 		velocity.y += LevelData.gravity * delta
-		if velocity.y > %PlayerOptions.terminal_velocity:
-			velocity.y = %PlayerOptions.terminal_velocity
-			
+		if velocity.y > player_options.terminal_velocity:
+			velocity.y = player_options.terminal_velocity
 	var is_sprinting = Input.is_action_pressed("sprint")
-	var sprinting_factor = %PlayerOptions.run_speed_multiplier if is_sprinting else 1
+	var sprinting_factor = player_options.run_speed_multiplier if is_sprinting else 1
 	var input_direction = Input.get_axis("left", "right")
 	var vertical_input_direction = Input.get_axis("up", "down")
 	if remove_player_control:
@@ -147,22 +151,22 @@ func _physics_process(delta: float) -> void:
 		input_direction = 0
 		vertical_input_direction = 0
 		
-	var max_speed = %PlayerOptions.max_walk_speed * sprinting_factor
-	var additional_friction = %PlayerOptions.friction * sign(-velocity.x) if %PlayerOptions.friction > 0 and \
+	var max_speed = player_options.max_walk_speed * sprinting_factor
+	var additional_friction = player_options.friction * sign(-velocity.x) if player_options.friction > 0 and \
 		  (not sign(velocity.x) == sign(input_direction)) else 0
-	var vertical_additional_friction = %PlayerOptions.friction * sign(-velocity.y) if %PlayerOptions.friction > 0 and \
+	var vertical_additional_friction = player_options.friction * sign(-velocity.y) if player_options.friction > 0 and \
 		  (not sign(velocity.y) == sign(vertical_input_direction)) else 0
 	
 	if is_on_floor():
 		if input_direction:
-			if %PlayerOptions.movement_acceleration > 0:
-				velocity.x += (input_direction * %PlayerOptions.movement_acceleration * sprinting_factor + additional_friction) * delta
-				max_speed = %PlayerOptions.max_walk_speed * sprinting_factor
+			if player_options.movement_acceleration > 0:
+				velocity.x += (input_direction * player_options.movement_acceleration * sprinting_factor + additional_friction) * delta
+				max_speed = player_options.max_walk_speed * sprinting_factor
 				if abs(velocity.x) > max_speed:
 					velocity.x = input_direction * max_speed
 
 			else:
-				velocity.x = input_direction * %PlayerOptions.max_walk_speed * sprinting_factor
+				velocity.x = input_direction * player_options.max_walk_speed * sprinting_factor
 			%Sprite.play("walk")
 			%Sprite.flip_h = input_direction > 0			
 		else:
@@ -172,7 +176,12 @@ func _physics_process(delta: float) -> void:
 				if sign(velocity.x) == sign(additional_friction):
 					velocity.x = 0
 			%Sprite.play("idle")
-	
+		if player_options.fall_damage_enabled:
+			print(previous_frame_vertical_speed - velocity.y)
+			if previous_frame_vertical_speed - velocity.y > player_options.fall_damage_threshold:
+				hit()
+		
+		
 	## Handle jumps
 	if Input.is_action_just_pressed("jump") and LevelData.gravity > 0:
 		if vertical_input_direction > 0: # holding down to fall through
@@ -183,11 +192,11 @@ func _physics_process(delta: float) -> void:
 			jump()
 	
 	## Handle dashing
-	if %PlayerOptions.can_dash and Input.is_action_just_pressed("dash"):
+	if player_options.can_dash and Input.is_action_just_pressed("dash"):
 		start_dash(input_direction, vertical_input_direction)
 	
 	else: #mid-air
-		if not %PlayerOptions.can_steer_midair:
+		if not player_options.can_steer_midair:
 			move_and_slide()
 			return
 		if LevelData.gravity <= 0: # free steering with no gravity
@@ -197,25 +206,25 @@ func _physics_process(delta: float) -> void:
 				velocity.x = 0
 			if sign(velocity.y) == sign(vertical_additional_friction):
 				velocity.y = 0
-		if %PlayerOptions.air_acceleration > 0:
-			velocity.x += input_direction * %PlayerOptions.air_acceleration * sprinting_factor * delta
-			if velocity.length() > %PlayerOptions.jump_strength:
-				velocity = velocity.normalized() * %PlayerOptions.jump_strength
+		if player_options.air_acceleration > 0:
+			velocity.x += input_direction * player_options.air_acceleration * sprinting_factor * delta
+			if velocity.length() > player_options.terminal_velocity:
+				velocity = velocity.normalized() * player_options.terminal_velocity
 
 			if LevelData.gravity <= 0:
-				velocity.y += vertical_input_direction * %PlayerOptions.air_acceleration * sprinting_factor * delta
-				if abs(velocity.y) > max_jump_speed:
-					velocity.y = sign(velocity.y) * max_jump_speed
-		if %PlayerOptions.can_fast_fall and Input.is_action_pressed("down"):
-			velocity.y += %PlayerOptions.fast_fall_additional_speed * delta
+				velocity.y += vertical_input_direction * player_options.air_acceleration * sprinting_factor * delta
+				if abs(velocity.y) > player_options.terminal_velocity:
+					velocity.y = sign(velocity.y) * player_options.terminal_velocity
+		if player_options.can_fast_fall and Input.is_action_pressed("down"):
+			velocity.y += player_options.fast_fall_additional_speed * delta
 		else:
-			velocity.x = input_direction * %PlayerOptions.max_walk_speed * sprinting_factor
-	
+			velocity.x = input_direction * player_options.max_walk_speed * sprinting_factor
+	previous_frame_vertical_speed = velocity.y
 	move_and_slide()
 
 func start_dash(input_direction, vertical_input_direction):
 	if dash_in_cooldown:
-		if not is_on_floor() and not %PlayerOptions.dash_cooldown_applies_while_in_air:
+		if not is_on_floor() and not player_options.dash_cooldown_applies_while_in_air:
 			pass
 		else:
 			print("[Player.handle_dash] Dash in cooldown!")
@@ -223,7 +232,7 @@ func start_dash(input_direction, vertical_input_direction):
 	if dashes_left <= 0:
 		print("[Player.handle_dash] No dashes left!")
 		return
-	if not %PlayerOptions.can_air_dash and not is_on_floor():
+	if not player_options.can_air_dash and not is_on_floor():
 		print("[Player.handle_dash] Cannot air dash!")
 		return
 		
@@ -232,7 +241,7 @@ func start_dash(input_direction, vertical_input_direction):
 	dash_in_cooldown = true
 	
 	velocity = Vector2(input_direction, vertical_input_direction).normalized() \
-	  * %PlayerOptions.dash_speed
+	  * player_options.dash_speed
 	
 	%AudioManager.play_sound("dash")
 
@@ -246,7 +255,7 @@ func spawn_reset():
 
 func handle_dash_state(delta):
 	dash_current_duration += delta
-	if dash_current_duration > %PlayerOptions.dash_duration:
+	if dash_current_duration > player_options.dash_duration:
 		is_dashing = false
 		dash_current_duration = 0
 		

@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=4 uid="uid://bjbyxtby30btp"]
+[gd_scene load_steps=30 format=4 uid="uid://bjbyxtby30btp"]
 
 [ext_resource type="Script" uid="uid://cc6esa3pkjr3r" path="res://scripts/level.gd" id="1_oc4kc"]
 [ext_resource type="AudioStream" uid="uid://bvciy56g3sr81" path="res://assets/three-red-hearts-prepare-to-dev-download/Three Red Hearts - Connected.ogg" id="2_wtwp4"]
 [ext_resource type="Texture2D" uid="uid://chesbvrtcg34r" path="res://assets/Tilemap/tilemap-backgrounds_packed.png" id="3_dga24"]
+[ext_resource type="Script" uid="uid://b4lpbyjh6wbx" path="res://scripts/player_options.gd" id="3_iwr0g"]
 [ext_resource type="PackedScene" uid="uid://csyi3a388f2ow" path="res://scenes/components/checkpoint.tscn" id="4_qxy0u"]
 [ext_resource type="Texture2D" uid="uid://deeoiob6aeqs8" path="res://assets/Tilemap/tilemap_packed.png" id="5_excbq"]
 [ext_resource type="PackedScene" uid="uid://dkdem4fkxj2uh" path="res://scenes/components/spike-bottom.tscn" id="5_qxy0u"]
@@ -1002,6 +1003,13 @@ texture_filter = 1
 script = ExtResource("1_oc4kc")
 gravity = 600.0
 level_bgm = ExtResource("2_wtwp4")
+
+[node name="PlayerOptions" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_iwr0g")
+max_health = 3
+no_jumps = 2
+fall_damage_enabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
