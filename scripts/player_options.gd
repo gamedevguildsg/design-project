@@ -38,7 +38,7 @@ extends Node
 @export var no_jumps := 1
 ## How high the player jumps
 @export var jump_strength : float = 200
-## 
+## If enabled, players can take damage by landing too fast.
 @export var fall_damage_enabled := false
 
 ## Holding down mid-air moves you down faster

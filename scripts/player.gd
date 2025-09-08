@@ -177,7 +177,6 @@ func _physics_process(delta: float) -> void:
 					velocity.x = 0
 			%Sprite.play("idle")
 		if player_options.fall_damage_enabled:
-			print(previous_frame_vertical_speed - velocity.y)
 			if previous_frame_vertical_speed - velocity.y > player_options.fall_damage_threshold:
 				hit()
 		

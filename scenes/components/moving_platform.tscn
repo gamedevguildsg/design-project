@@ -23,9 +23,9 @@ curve = SubResource("Curve2D_e0jfd")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
-position = Vector2(74.3812, 63.7553)
+position = Vector2(55.0094, 47.1509)
 rotation = -2.65711
-progress = 97.9573
+progress = 72.4498
 rotates = false
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="Path2D/PathFollow2D"]

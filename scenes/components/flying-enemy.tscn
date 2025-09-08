@@ -1,0 +1,58 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6nersbhp65xw"]
+
+[ext_resource type="Script" uid="uid://brakngh6rkhsk" path="res://scripts/flying_enemy.gd" id="1_1ywte"]
+[ext_resource type="Texture2D" uid="uid://dd25r3diwwd67" path="res://assets/Tiles/Characters/tile_0024.png" id="2_y0awp"]
+[ext_resource type="Texture2D" uid="uid://bgmdxvdi8n3ed" path="res://assets/Tiles/Characters/tile_0025.png" id="3_6t58t"]
+[ext_resource type="Texture2D" uid="uid://cukknknuculo8" path="res://assets/Tiles/Characters/tile_0026.png" id="4_dcto5"]
+
+[sub_resource type="Curve2D" id="Curve2D_1ywte"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 101, -1)
+}
+point_count = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hdmjg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y0awp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6t58t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dcto5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brumf"]
+size = Vector2(10, 9)
+
+[node name="Flying-enemy" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_1ywte")
+speed = 10
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_1ywte")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+unique_name_in_owner = true
+position = Vector2(53.8436, -0.533105)
+progress = 53.8435
+rotates = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_hdmjg")
+frame_progress = 0.293738
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_brumf")
