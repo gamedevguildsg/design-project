@@ -239,7 +239,6 @@ func start_dash(input_direction, vertical_input_direction):
 	is_dashing = true
 	dashes_left -= 1
 	dash_in_cooldown = true
-	
 	velocity = Vector2(input_direction, vertical_input_direction).normalized() \
 	  * player_options.dash_speed
 	
@@ -258,6 +257,9 @@ func handle_dash_state(delta):
 	if dash_current_duration > player_options.dash_duration:
 		is_dashing = false
 		dash_current_duration = 0
+		# remove momentum from the dash
+		if velocity.length() > player_options.max_walk_speed:
+			velocity = velocity.normalized() * player_options.max_walk_speed
 		
 	duplicate_time_actual += delta
 	if duplicate_time_actual >= duplicate_time_gap:
