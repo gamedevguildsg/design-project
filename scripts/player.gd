@@ -108,6 +108,8 @@ func blinking_animation():
 
 func update_health_display():
 	%HeartContainer.get_children().map(func(n : Node): %HeartContainer.remove_child(n))
+	if not current_health:
+		return
 	for _i in floor(current_health):
 		var heart = TextureRect.new()
 		heart.texture = full_heart_texture

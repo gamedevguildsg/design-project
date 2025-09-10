@@ -41,14 +41,14 @@ curve = SubResource("Curve2D_1ywte")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
-position = Vector2(53.8436, -0.533105)
-progress = 53.8435
+position = Vector2(36.5077, -0.361462)
+progress = 36.51
 rotates = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_hdmjg")
-frame_progress = 0.293738
+frame_progress = 0.633985
 
 [node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
 unique_name_in_owner = true
