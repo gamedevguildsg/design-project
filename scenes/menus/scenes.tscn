@@ -1,15 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4yi04orj3h4b"]
+[gd_scene load_steps=7 format=3 uid="uid://c4yi04orj3h4b"]
 
 [ext_resource type="Script" uid="uid://bhkxmjvfvxdkd" path="res://scripts/menus/scenes.gd" id="1_km0br"]
 [ext_resource type="PackedScene" uid="uid://62udm8g23pai" path="res://scenes/menus/start_screen.tscn" id="2_bxhlh"]
 [ext_resource type="PackedScene" uid="uid://bjbyxtby30btp" path="res://scenes/levels/level_1.tscn" id="3_p2yhb"]
 [ext_resource type="PackedScene" uid="uid://djk1oqej1gmre" path="res://scenes/menus/win.tscn" id="4_jct74"]
 [ext_resource type="PackedScene" uid="uid://c62g7xgg1ustx" path="res://scenes/components/player.tscn" id="5_ubfol"]
+[ext_resource type="PackedScene" uid="uid://bkptalo513ca5" path="res://scenes/levels/level_2.tscn" id="6_81fkb"]
 
 [node name="Scenes" type="Node"]
 script = ExtResource("1_km0br")
 levels = Dictionary[String, PackedScene]({
 "level_1": ExtResource("3_p2yhb"),
+"level_2": ExtResource("6_81fkb"),
 "player": ExtResource("5_ubfol"),
 "start_screen": ExtResource("2_bxhlh"),
 "win": ExtResource("4_jct74")

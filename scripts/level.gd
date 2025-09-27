@@ -3,6 +3,8 @@ extends Node2D
 
 @export var gravity : float = 300
 @export var level_bgm : AudioStream
+@export var min_camera_zoom := 1.5
+@export var max_camera_zoom := 2.0
 
 var checkpoint_position : Vector2
 var player : Player
@@ -33,11 +35,20 @@ func spawn_player(position):
 		player.set_player_options(%PlayerOptions)
 
 	player.global_position = position
+	var viewport_size = get_viewport_rect().size
+	var camera_left_x = %LevelBoundary.position.x - %LevelBoundary.shape.size.x / 2
+	var camera_right_x = camera_left_x + %LevelBoundary.shape.size.x
+	var camera_top_x = %LevelBoundary.position.y - %LevelBoundary.shape.size.y / 2
+	var camera_bottom_x = camera_top_x + %LevelBoundary.shape.size.y
+	var camera_scale_x = viewport_size.x / (camera_right_x - camera_left_x)
+	var camera_scale_y = viewport_size.y / (camera_bottom_x - camera_top_x)
+	var camera_scale = clamp(min(camera_scale_x, camera_scale_y), min_camera_zoom, max_camera_zoom)
+	player.set_camera_zoom(camera_scale)
 	player.set_camera_boundaries(
-		%Area2D.position.x,
-		%Area2D.position.x + %LevelBoundary.shape.size.x,
-		%Area2D.position.y,
-		%Area2D.position.y + %LevelBoundary.shape.size.y
+		camera_left_x,
+		camera_right_x,
+		camera_top_x,
+		camera_bottom_x
 	)
 	player.spawn_reset()
 	

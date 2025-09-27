@@ -15,11 +15,11 @@ extends Node2D
 			%HBoxContainer.add_child(texture_rect)
 			
 		#adjust hitbox to fit the whole platform.
+		await get_tree().process_frame # wait two frames for controls to update size
 		await get_tree().process_frame
 		var _size = %HBoxContainer.get_rect().size.x
 		%CollisionShape2D.shape.size.x = _size
 		%CollisionShape2D.position.x = _size / 2
-		size = value
 		
 ## How fast the platform is moving
 @export var speed := 20

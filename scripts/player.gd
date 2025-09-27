@@ -144,7 +144,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += LevelData.gravity * delta
 		if velocity.y > player_options.terminal_velocity:
 			velocity.y = player_options.terminal_velocity
-	var is_sprinting = Input.is_action_pressed("sprint")
+	var is_sprinting = player_options.can_run and Input.is_action_pressed("sprint")
 	var sprinting_factor = player_options.run_speed_multiplier if is_sprinting else 1
 	var input_direction = Input.get_axis("left", "right")
 	var vertical_input_direction = Input.get_axis("up", "down")
@@ -286,3 +286,6 @@ func set_camera_boundaries(left, right, top, bottom):
 	%Camera2D.limit_right = right
 	%Camera2D.limit_top = top
 	%Camera2D.limit_bottom = bottom
+
+func set_camera_zoom(zoom_level):
+	%Camera2D.zoom = Vector2(zoom_level, zoom_level)
