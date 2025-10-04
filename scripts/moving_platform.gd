@@ -22,7 +22,12 @@ extends Node2D
 		%CollisionShape2D.position.x = _size / 2
 		
 ## How fast the platform is moving
-@export var speed := 20
+@export var speed := 20 :
+	set(value):
+		speed = value
+		if not Engine.is_editor_hint():
+			await ready # wait for the tree to be ready before changing controls
+		%AnimatableBody2D.constant_linear_velocity.x = speed
 ## From 0 to 1, at what point in the path does the platform start moving from
 @export var start_position : float :
 	set(value):
@@ -46,12 +51,18 @@ func _physics_process(delta: float) -> void:
 	if not %PathFollow2D: # node not ready
 		return
 	if not reverse_direction:
-		%PathFollow2D.progress += speed * delta
-		if %PathFollow2D.progress_ratio >= 0.99:
-			%PathFollow2D.progress_ratio = 0.99
+		%AnimatableBody2D.constant_linear_velocity.x = -speed
+		var pixel_distance = %PathFollow2D.progress + speed * delta
+		if pixel_distance > %Path2D.curve.get_baked_length():
+			%PathFollow2D.progress_ratio = 1
 			reverse_direction = true
+		else:
+			%PathFollow2D.progress = pixel_distance
 	else:
-		%PathFollow2D.progress -= speed * delta
-		if %PathFollow2D.progress_ratio <= 0.01:
-			%PathFollow2D.progress_ratio = 0.01
+		%AnimatableBody2D.constant_linear_velocity.x = speed
+		var pixel_distance = %PathFollow2D.progress - speed * delta
+		if pixel_distance < 0:
+			%PathFollow2D.progress_ratio = 0.
 			reverse_direction = false
+		else:
+			%PathFollow2D.progress -= speed * delta

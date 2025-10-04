@@ -11,10 +11,12 @@ point_count = 2
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mbxjh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwjrs"]
-size = Vector2(90, 6)
+size = Vector2(36, 6)
 
 [node name="MovingPlatform" type="Node2D"]
+position = Vector2(312, 68)
 script = ExtResource("1_hwior")
+size = 2
 speed = 40
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -23,15 +25,16 @@ curve = SubResource("Curve2D_e0jfd")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
-position = Vector2(-160.929, 0)
+position = Vector2(-97.33259, 0)
 rotation = -2.65711
-progress = 160.917
+progress = 97.33325
 rotates = false
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Path2D/PathFollow2D"]
+[node name="AnimatableBody2D" type="StaticBody2D" parent="Path2D/PathFollow2D"]
 unique_name_in_owner = true
 rotation = 2.65711
 physics_material_override = SubResource("PhysicsMaterial_mbxjh")
+constant_linear_velocity = Vector2(40, 0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Path2D/PathFollow2D/AnimatableBody2D"]
 unique_name_in_owner = true
@@ -42,6 +45,6 @@ theme_override_constants/separation = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/AnimatableBody2D"]
 unique_name_in_owner = true
-position = Vector2(9, 3)
+position = Vector2(18, 3)
 shape = SubResource("RectangleShape2D_fwjrs")
 one_way_collision = true
