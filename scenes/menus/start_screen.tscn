@@ -30,6 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_he1sj")
+starting_level = "demo_level"
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(413.333, 325)

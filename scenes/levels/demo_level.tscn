@@ -1,27 +1,24 @@
-[gd_scene load_steps=31 format=4 uid="uid://bjbyxtby30btp"]
+[gd_scene load_steps=27 format=4 uid="uid://js73r1e71fum"]
 
-[ext_resource type="Script" uid="uid://cc6esa3pkjr3r" path="res://scripts/level.gd" id="1_oc4kc"]
-[ext_resource type="AudioStream" uid="uid://bvciy56g3sr81" path="res://assets/three-red-hearts-prepare-to-dev-download/Three Red Hearts - Connected.ogg" id="2_wtwp4"]
-[ext_resource type="Texture2D" uid="uid://chesbvrtcg34r" path="res://assets/Tilemap/tilemap-backgrounds_packed.png" id="3_dga24"]
-[ext_resource type="Script" uid="uid://b4lpbyjh6wbx" path="res://scripts/player_options.gd" id="3_iwr0g"]
-[ext_resource type="PackedScene" uid="uid://csyi3a388f2ow" path="res://scenes/components/checkpoint.tscn" id="4_qxy0u"]
-[ext_resource type="Texture2D" uid="uid://deeoiob6aeqs8" path="res://assets/Tilemap/tilemap_packed.png" id="5_excbq"]
-[ext_resource type="PackedScene" uid="uid://dkdem4fkxj2uh" path="res://scenes/components/spike-bottom.tscn" id="5_qxy0u"]
-[ext_resource type="PackedScene" uid="uid://ch65v56hd7dsx" path="res://scenes/components/exit.tscn" id="6_iav0o"]
-[ext_resource type="PackedScene" uid="uid://dpparw64q8sq2" path="res://scenes/components/spike-left.tscn" id="6_mm8aj"]
-[ext_resource type="Script" uid="uid://cv0ro2yp1f48l" path="res://scripts/death_zone.gd" id="7_dnkej"]
-[ext_resource type="PackedScene" uid="uid://b1obuicfttux7" path="res://scenes/components/spike-right.tscn" id="7_wtwp4"]
-[ext_resource type="PackedScene" uid="uid://hflx4cc7hggd" path="res://scenes/components/moving_platform.tscn" id="8_dga24"]
-[ext_resource type="PackedScene" uid="uid://c1fwcspjhc2j8" path="res://scenes/components/spike-top.tscn" id="8_iwr0g"]
-[ext_resource type="PackedScene" uid="uid://8uh5277dy0ew" path="res://scenes/components/diamond.tscn" id="9_bahl2"]
-[ext_resource type="PackedScene" uid="uid://cr7kbljoxipkb" path="res://scenes/components/enemy-red.tscn" id="15_wtwp4"]
-[ext_resource type="PackedScene" uid="uid://c6nersbhp65xw" path="res://scenes/components/flying-enemy.tscn" id="17_bahl2"]
+[ext_resource type="Script" uid="uid://cc6esa3pkjr3r" path="res://scripts/level.gd" id="1_v8d84"]
+[ext_resource type="AudioStream" uid="uid://bvciy56g3sr81" path="res://assets/three-red-hearts-prepare-to-dev-download/Three Red Hearts - Connected.ogg" id="2_gw1l3"]
+[ext_resource type="Script" uid="uid://b4lpbyjh6wbx" path="res://scripts/player_options.gd" id="3_p4se4"]
+[ext_resource type="Texture2D" uid="uid://chesbvrtcg34r" path="res://assets/Tilemap/tilemap-backgrounds_packed.png" id="5_lkn2k"]
+[ext_resource type="PackedScene" uid="uid://b1obuicfttux7" path="res://scenes/components/spike-right.tscn" id="6_sbygb"]
+[ext_resource type="PackedScene" uid="uid://dkdem4fkxj2uh" path="res://scenes/components/spike-bottom.tscn" id="7_5niy6"]
+[ext_resource type="PackedScene" uid="uid://dpparw64q8sq2" path="res://scenes/components/spike-left.tscn" id="8_wikm6"]
+[ext_resource type="PackedScene" uid="uid://csyi3a388f2ow" path="res://scenes/components/checkpoint.tscn" id="9_1c1qw"]
+[ext_resource type="PackedScene" uid="uid://c1fwcspjhc2j8" path="res://scenes/components/spike-top.tscn" id="10_1a10c"]
+[ext_resource type="PackedScene" uid="uid://8uh5277dy0ew" path="res://scenes/components/diamond.tscn" id="11_mx6s3"]
+[ext_resource type="Texture2D" uid="uid://deeoiob6aeqs8" path="res://assets/Tilemap/tilemap_packed.png" id="12_7d3nu"]
+[ext_resource type="PackedScene" uid="uid://cr7kbljoxipkb" path="res://scenes/components/enemy-red.tscn" id="13_r6ket"]
+[ext_resource type="Script" uid="uid://cv0ro2yp1f48l" path="res://scripts/death_zone.gd" id="15_wwjag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dga24"]
-size = Vector2(1149.5, 649)
+size = Vector2(695, 467)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klq6b"]
-texture = ExtResource("3_dga24")
+texture = ExtResource("5_lkn2k")
 texture_region_size = Vector2i(24, 24)
 0:0/0 = 0
 1:0/0 = 0
@@ -77,15 +74,15 @@ tile_size = Vector2i(24, 24)
 sources/0 = SubResource("TileSetAtlasSource_klq6b")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_wtwp4"]
-scenes/0/scene = ExtResource("7_wtwp4")
-scenes/1/scene = ExtResource("5_qxy0u")
-scenes/2/scene = ExtResource("6_mm8aj")
-scenes/4/scene = ExtResource("4_qxy0u")
-scenes/5/scene = ExtResource("8_iwr0g")
-scenes/7/scene = ExtResource("9_bahl2")
+scenes/0/scene = ExtResource("6_sbygb")
+scenes/1/scene = ExtResource("7_5niy6")
+scenes/2/scene = ExtResource("8_wikm6")
+scenes/4/scene = ExtResource("9_1c1qw")
+scenes/5/scene = ExtResource("10_1a10c")
+scenes/7/scene = ExtResource("11_mx6s3")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iwr0g"]
-texture = ExtResource("5_excbq")
+texture = ExtResource("12_7d3nu")
 texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
@@ -291,9 +288,13 @@ texture_region_size = Vector2i(18, 18)
 13:4/0 = 0
 14:4/0 = 0
 15:4/0 = 0
+15:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, -3.057598, -9, -2.8777409)
+15:4/0/physics_layer_0/polygon_0/one_way = true
 16:4/0 = 0
 17:4/0 = 0
 18:4/0 = 0
+18:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(1.4388695, -9, 9, -9, 9, -3.057598, 1.4388695, -3.2374573)
+18:4/0/physics_layer_0/polygon_0/one_way = true
 19:4/0 = 0
 19:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, -2.33816, -9, -2.33816)
 19:4/0/physics_layer_0/polygon_0/one_way = true
@@ -327,8 +328,12 @@ texture_region_size = Vector2i(18, 18)
 13:5/0/physics_layer_0/polygon_0/one_way = true
 14:5/0 = 0
 15:5/0 = 0
+15:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -3.057598, 9, -3.4173164, 9, 3.5971737, -9, 3.9568925)
+15:5/0/physics_layer_0/polygon_0/one_way = true
 16:5/0 = 0
 17:5/0 = 0
+17:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, -2.6978807, -9, -2.877739)
+17:5/0/physics_layer_0/polygon_0/one_way = true
 18:5/0 = 0
 18:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.0576, -1.79859, 9, -1.79859, 9, -9, 2.69788, -9)
 18:5/0/physics_layer_0/polygon_0/one_way = true
@@ -364,9 +369,15 @@ texture_region_size = Vector2i(18, 18)
 15:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -4.85618, -8, -4.85618)
 15:6/0/physics_layer_0/polygon_0/one_way = true
 16:6/0 = 0
+16:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, -2.6978807, -9, -2.877739)
+16:6/0/physics_layer_0/polygon_0/one_way = true
 17:6/0 = 0
 18:6/0 = 0
+18:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, -2.6978807, -9, -2.877739)
+18:6/0/physics_layer_0/polygon_0/one_way = true
 19:6/0 = 0
+19:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, -1.4388714, -9, -1.4388714, -3.057598, -9, -2.877739)
+19:6/0/physics_layer_0/polygon_0/one_way = true
 20:6/0 = 0
 21:6/0 = 0
 0:7/0 = 0
@@ -460,7 +471,7 @@ sources/1 = SubResource("TileSetAtlasSource_iwr0g")
 sources/0 = SubResource("TileSetScenesCollectionSource_wtwp4")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wtwp4"]
-texture = ExtResource("5_excbq")
+texture = ExtResource("12_7d3nu")
 texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
 1:0/0 = 0
@@ -649,7 +660,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_wtwp4")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_np2pn"]
-texture = ExtResource("5_excbq")
+texture = ExtResource("12_7d3nu")
 texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-9, -9, 9, -9, 9, 9, -9, 9)
@@ -1018,7 +1029,7 @@ physics_layer_0/collision_mask = 17
 sources/1 = SubResource("TileSetAtlasSource_np2pn")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_gmpev"]
-scenes/1/scene = ExtResource("15_wtwp4")
+scenes/1/scene = ExtResource("13_r6ket")
 
 [sub_resource type="TileSet" id="TileSet_mkypq"]
 tile_size = Vector2i(18, 18)
@@ -1028,30 +1039,30 @@ sources/0 = SubResource("TileSetScenesCollectionSource_gmpev")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klq6b"]
 size = Vector2(1152, 239)
 
-[sub_resource type="Curve2D" id="Curve2D_np2pn"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 63, 112, 0, 0, 0, 0, 60, -69)
-}
-point_count = 2
-
 [node name="level_1" type="Node2D"]
 texture_filter = 1
-script = ExtResource("1_oc4kc")
+script = ExtResource("1_v8d84")
 gravity = 600.0
-level_bgm = ExtResource("2_wtwp4")
+level_bgm = ExtResource("2_gw1l3")
 
 [node name="PlayerOptions" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("3_iwr0g")
+script = ExtResource("3_p4se4")
+can_run = false
+can_steer_midair = false
+can_dash = false
+can_air_dash = false
+invuln_while_dashing = false
+friction = 400.0
 no_jumps = 2
-fall_damage_enabled = true
+can_fast_fall = false
 
 [node name="Area2D" type="Area2D" parent="."]
 unique_name_in_owner = true
 
 [node name="LevelBoundary" type="CollisionShape2D" parent="Area2D"]
 unique_name_in_owner = true
-position = Vector2(575.75, 327.5)
+position = Vector2(348.5, 416.5)
 shape = SubResource("RectangleShape2D_dga24")
 
 [node name="Background" type="TileMapLayer" parent="."]
@@ -1062,33 +1073,25 @@ tile_set = SubResource("TileSet_b121j")
 [node name="PlatformLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
 position = Vector2(0, -78)
-tile_map_data = PackedByteArray("AAAAACcAAQABAAAAAAABACcAAQACAAAAAAACACcAAQACAAAAAAADACcAAQACAAAAAAAEACcAAQACAAAAAAAgACcAAQADAAAAAAAsACcAAQABAAAAAAAtACcAAQACAAAAAAAuACcAAQACAAAAAAAvACcAAQACAAAAAAAwACcAAQACAAAAAAAxACcAAQACAAAAAAAyACcAAQACAAAAAAAzACcAAQACAAAAAAA0ACcAAQACAAAAAAA1ACcAAQACAAAAAAA2ACcAAQACAAAAAAA3ACcAAQACAAAAAAA4ACcAAQACAAAAAAA5ACcAAQACAAAAAAA6ACcAAQACAAAAAAA7ACcAAQACAAAAAAA8ACcAAQACAAAAAAA9ACcAAQACAAAAAAA+ACcAAQACAAAAAAA/ACcAAQACAAAAAABAACcAAQACAAAAAABBACcAAQACAAAAAABCACcAAQACAAAAAABDACcAAQACAAAAAABEACcAAQACAAAAAABFACcAAQACAAAAAABGACcAAQACAAAAAABHACcAAQAAAAAAAAAFACcAAQACAAAAAAAGACcAAQACAAAAAAAHACcAAQACAAAAAAAIACcAAQACAAAAAAAJACcAAQACAAAAAAAKACQAAQABAAEAAAAKACUAAQABAAYAAAAKACYAAQABAAYAAAAKACcAAQACAAAAAAALACcAAQACAAAAAAAMACcAAQACAAAAAAANACEAAQABAAEAAAANACIAAQABAAYAAAANACMAAQABAAYAAAANACQAAQADAAEAAAANACcAAQACAAAAAAAOACEAAQACAAEAAAAOACYAAQACAAYAAAAOACcAAQACAAAAAAAPACEAAQACAAEAAAAPACYAAQACAAYAAAAPACcAAQACAAAAAAAQACEAAQADAAEAAAAQACIAAQADAAYAAAAQACQAAQADAAYAAAAQACUAAQADAAYAAAAQACYAAQADAAYAAAAQACcAAQACAAAAAAARACcAAQACAAAAAAASACcAAQACAAAAAAATACcAAQACAAAAAAAUACcAAQACAAAAAAAVACcAAQACAAAAAAAWACcAAQACAAAAAAAXACcAAQACAAAAAAAYACcAAQACAAAAAAAZACcAAQACAAAAAAAaACcAAQACAAAAAAAbACcAAQACAAAAAAAcACcAAQACAAAAAAAdACcAAQACAAAAAAAeACcAAQACAAAAAAAfACcAAQACAAAAAAAQACMAAQADAAYAAAALACQAAQACAAEAAAAMACQAAQACAAEAAAANACUAAQADAAYAAAANACYAAQADAAYAAAAMACYAAQACAAYAAAALACYAAQACAAYAAAALACUAAQACAAYAAAAMACUAAQACAAYAAAAOACIAAQACAAYAAAAPACIAAQACAAYAAAAPACMAAQACAAYAAAAPACQAAQACAAYAAAAPACUAAQACAAYAAAAOACUAAQACAAYAAAAOACQAAQACAAYAAAAOACMAAQACAAYAAAAVACAAAQABAAAAAAAWACAAAQACAAAAAAAXACAAAQACAAAAAAAYACAAAQACAAAAAAAZACAAAQACAAAAAAAaACAAAQACAAAAAAAbACAAAQACAAAAAAAcACAAAQADAAAAAAAmACcAAQAAAAAAAAAdACAAAQATAAUAAAAeACAAAQATAAUAAAAfACAAAQATAAUAAAAgACAAAQATAAUAAAAhACAAAQATAAUAAAAiACAAAQATAAUAAAAjACAAAQATAAUAAAAkACAAAQATAAUAAAAlACAAAQATAAUAAAAmACAAAQATAAUAAAAnACAAAQATAAUAAAAoACAAAQATAAUAAAApACAAAQATAAUAAAAqACAAAQATAAUAAAAcACYAAAAAAAAAAQAdACYAAAAAAAAAAQAbACYAAAAAAAAAAQAaACYAAAAAAAAAAQASACYAAAAAAAAAAQATACYAAAAAAAAAAQAUACYAAAAAAAAAAQAeABcAAAAAAAAABwAkABcAAAAAAAAABwAqABcAAAAAAAAABwAtABkAAAAAAAAAAQAsABkAAAAAAAAAAQArABkAAAAAAAAAAQAqABkAAAAAAAAAAQApABkAAAAAAAAAAQAoABkAAAAAAAAAAQAnABkAAAAAAAAAAQAmABkAAAAAAAAAAQAlABkAAAAAAAAAAQAkABkAAAAAAAAAAQAjABkAAAAAAAAAAQAiABkAAAAAAAAAAQAhABkAAAAAAAAAAQAgABkAAAAAAAAAAQAfABkAAAAAAAAAAQAeABkAAAAAAAAAAQAdABkAAAAAAAAAAQAcABkAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_bahl2")
 
 [node name="DecorationLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
 position = Vector2(1, -78)
-tile_map_data = PackedByteArray("AAAYACYAAQAEAAYAAAAEACYAAQAFAAQAAABEACYAAQAEAAQAAAA5ACUAAQALAAYAAAA5ACYAAQALAAYAAAA5ACQAAQALAAUAAAAeACYAAQAGAAYAAAAQACAAAQAIAAQAAAA=")
 tile_set = SubResource("TileSet_iwr0g")
 
 [node name="ObstacleLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
 position = Vector2(1, -78)
-tile_map_data = PackedByteArray("AAA5ACUAAQALAAYAAAA5ACYAAQALAAYAAAA5ACQAAQALAAUAAAAZAB8AAQAIAAIAAGAZAB4AAQAJAAIAAGAZAB0AAQAJAAIAAGAZABwAAQAJAAIAAGAZABsAAQAJAAIAAGAZABoAAQAKAAIAAGAaABoAAQAIAAIAAAAbABoAAQAJAAIAAAAcABoAAQAKAAIAAAAdABoAAQAIAAIAAAAeABoAAQAJAAIAAAAfABoAAQAKAAIAAAAgABoAAQAIAAIAAAAhABoAAQAJAAIAAAAiABoAAQAKAAIAAAAjABoAAQAIAAIAAAAkABoAAQAJAAIAAAAlABoAAQAKAAIAAAAmABoAAQAIAAIAAAAnABoAAQAJAAIAAAAoABoAAQAKAAIAAAApABoAAQAIAAIAAAAqABoAAQAJAAIAAAArABoAAQAKAAIAAAAsABoAAQAIAAIAAAAtABoAAQAJAAIAAAAuABoAAQAKAAIAAAAvABoAAQAIAAIAAAAwABoAAQAJAAIAAAAxABoAAQAKAAIAAAA=")
 tile_set = SubResource("TileSet_v6ha0")
 
 [node name="EnemyLayer" type="TileMapLayer" parent="."]
 position = Vector2(1, -78)
-tile_map_data = PackedByteArray("AAAEACYAAQAFAAQAAAA8ACYAAAAAAAAAAQAXAB8AAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_mkypq")
-
-[node name="Exit" parent="." instance=ExtResource("6_iav0o")]
-position = Vector2(1017, 612)
-go_to_scene = "win"
 
 [node name="DeathZone" type="Area2D" parent="."]
 position = Vector2(1, 0)
-script = ExtResource("7_dnkej")
+script = ExtResource("15_wwjag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
 position = Vector2(580, 785)
@@ -1097,36 +1100,3 @@ shape = SubResource("RectangleShape2D_klq6b")
 [node name="InitialSpawnPoint" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(38, 606)
-
-[node name="MovingPlatform" parent="." instance=ExtResource("8_dga24")]
-position = Vector2(303, 474)
-size = 3
-speed = 100
-
-[node name="PathFollow2D" parent="MovingPlatform/Path2D" index="0"]
-position = Vector2(-171.67807, 0)
-progress = 171.66672
-
-[node name="AnimatableBody2D" parent="MovingPlatform/Path2D/PathFollow2D" index="0"]
-constant_linear_velocity = Vector2(-100, 0)
-
-[node name="CollisionShape2D" parent="MovingPlatform/Path2D/PathFollow2D/AnimatableBody2D" index="1"]
-position = Vector2(27, 3)
-
-[node name="Flying-enemy" parent="." instance=ExtResource("17_bahl2")]
-position = Vector2(303, 467)
-speed = 50
-
-[node name="Path2D" parent="Flying-enemy" index="0"]
-position = Vector2(-43, 0)
-curve = SubResource("Curve2D_np2pn")
-
-[node name="PathFollow2D" parent="Flying-enemy/Path2D" index="0"]
-position = Vector2(60.80164, -20.634216)
-progress = 132.6437
-
-[node name="AnimatedSprite2D" parent="Flying-enemy/Path2D/PathFollow2D" index="0"]
-frame_progress = 0.7470136
-
-[editable path="MovingPlatform"]
-[editable path="Flying-enemy"]
