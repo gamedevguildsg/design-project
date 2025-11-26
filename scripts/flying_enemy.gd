@@ -24,12 +24,16 @@ func _physics_process(delta: float) -> void:
 	if not %PathFollow2D: # node not ready
 		return
 	if not reverse_direction:
-		%PathFollow2D.progress += speed * delta
-		if %PathFollow2D.progress_ratio >= 0.99:
-			%PathFollow2D.progress_ratio = 0.99
+		var pixel_distance = %PathFollow2D.progress + speed * delta
+		if pixel_distance > %Path2D.curve.get_baked_length():
+			%PathFollow2D.progress_ratio = 1
 			reverse_direction = true
+		else:
+			%PathFollow2D.progress = pixel_distance
 	else:
-		%PathFollow2D.progress -= speed * delta
-		if %PathFollow2D.progress_ratio <= 0.01:
-			%PathFollow2D.progress_ratio = 0.01
+		var pixel_distance = %PathFollow2D.progress - speed * delta
+		if pixel_distance < 0:
+			%PathFollow2D.progress_ratio = 0.
 			reverse_direction = false
+		else:
+			%PathFollow2D.progress -= speed * delta

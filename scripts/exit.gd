@@ -13,3 +13,6 @@ func _on_body_enter(body: Node2D):
 		print("You win!")
 		if go_to_scene:
 			SignalBus.load_scene.emit(go_to_scene)
+		else:
+			 # default to win
+			SignalBus.load_scene.emit("win")

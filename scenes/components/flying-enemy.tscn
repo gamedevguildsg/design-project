@@ -37,18 +37,19 @@ script = ExtResource("1_1ywte")
 speed = 10
 
 [node name="Path2D" type="Path2D" parent="."]
+unique_name_in_owner = true
 curve = SubResource("Curve2D_1ywte")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 unique_name_in_owner = true
-position = Vector2(36.50768, -0.36146215)
-progress = 36.51
+position = Vector2(101.18539, -1.0468564)
+progress = 189.861
 rotates = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D"]
 unique_name_in_owner = true
 sprite_frames = SubResource("SpriteFrames_hdmjg")
-frame_progress = 0.633985
+frame_progress = 0.49427992
 
 [node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
 unique_name_in_owner = true

@@ -1111,11 +1111,11 @@ position = Vector2(56, 568)
 position = Vector2(184, 528)
 
 [node name="PathFollow2D" parent="Flying-enemy/Path2D" index="0"]
-position = Vector2(222.9263, -21.422808)
-progress = 65.29151
+position = Vector2(271.7279, -17.356007)
+progress = 16.359898
 
 [node name="AnimatedSprite2D" parent="Flying-enemy/Path2D/PathFollow2D" index="0"]
-frame_progress = 0.4007239
+frame_progress = 0.81242394
 
 [node name="Exit" parent="." instance=ExtResource("16_gw1l3")]
 position = Vector2(152, 594)
@@ -1130,12 +1130,12 @@ speed = 42
 curve = SubResource("Curve2D_ndlae")
 
 [node name="PathFollow2D" parent="MovingPlatform/Path2D" index="0"]
-position = Vector2(96.54857, -9)
-progress = 2.6002078
+position = Vector2(72.99183, -9)
+progress = 25.900007
 
 [node name="AnimatableBody2D" parent="MovingPlatform/Path2D/PathFollow2D" index="0"]
 physics_material_override = SubResource("PhysicsMaterial_e0jfd")
-constant_linear_velocity = Vector2(42, 0)
+constant_linear_velocity = Vector2(-42, 0)
 
 [node name="CollisionShape2D" parent="MovingPlatform/Path2D/PathFollow2D/AnimatableBody2D" index="1"]
 position = Vector2(9, 3)
